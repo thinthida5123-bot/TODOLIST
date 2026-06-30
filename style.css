@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-dark: #12121a;
+    --bg-sidebar: #1a1a26;
+    --bg-card: #1d1d2b;
+    --bg-hero: linear-gradient(135deg, #3b2d93 0%, #1f1757 100%);
+    --text-main: #ffffff;
+    --text-muted: #7b7b93;
+    --primary-purple: #6c5dd3;
+    --accent-orange: #ff9f43;
+    --accent-green: #28c76f;
+    --accent-blue: #4ea2ff;
+    --tag-work: rgba(255, 78, 100, 0.15);
+    --tag-work-text: #ff4e64;
+    --tag-study: rgba(108, 93, 211, 0.15);
+    --tag-study-text: #8c7ae6;
+    --tag-personal: rgba(255, 159, 67, 0.15);
+    --tag-personal-text: #ff9f43;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body { background-color: var(--bg-dark); color: var(--text-main); display: flex; justify-content: center; min-height: 100vh; overflow: hidden; }
+.dashboard-container { display: flex; width: 100%; max-width: 1400px; height: 100vh; }
+
+/* SIDEBAR */
+.sidebar { width: 280px; background-color: var(--bg-sidebar); padding: 30px 24px; display: flex; flex-direction: column; gap: 30px; border-right: 1px solid rgba(255,255,255,0.02); }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand .logo-icon { font-size: 24px; color: var(--primary-purple); }
+.user-profile { display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 12px; }
+.avatar { width:60px; height:60px; border-radius: 50%; object-fit: cover; }
+.user-info h3 { font-size: 14px; }
+.user-info p { font-size: 11px; color: var(--text-muted); }
+.nav-menu { display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
+.nav-item { display: flex; align-items: center; padding: 14px 16px; color: var(--text-muted); text-decoration: none; font-size: 14px; border-radius: 10px; gap: 12px; transition: 0.2s; }
+.nav-item:hover, .nav-item.active { background-color: rgba(108, 93, 211, 0.1); color: var(--text-main); }
+.nav-item.active { background-color: #272541; color: #a29bfe; font-weight: 500; }
+.nav-item .badge { margin-left: auto; font-size: 11px; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 20px; }
+.quote-box { background: #151424; padding: 20px; border-radius: 16px; font-size: 12px; color: #b5b5c9; }
+
+/* MAIN CONTENT */
+.main-content { flex-grow: 1; padding: 40px; overflow-y: auto; position: relative; }
+.hero-banner { background: var(--bg-hero); border-radius: 24px; padding: 35px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.greeting { font-size: 15px; color: #b9b3f3; }
+.hero-banner h1 { font-size: 28px; margin-bottom: 20px; }
+.progress-container { width: 300px; }
+.progress-labels { display: flex; justify-content: space-between; font-size: 12px; color: #b9b3f3; margin-bottom: 8px; }
+.progress-bar { background: rgba(255,255,255,0.1); height: 8px; border-radius: 10px; overflow: hidden; }
+.progress-fill { background: var(--accent-green); height: 100%; width: 0%; transition: width 0.4s ease; }
+.hero-icon { font-size: 70px; color: rgba(255,255,255,0.1); }
+
+/* STATS */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+.stat-card { background-color: var(--bg-card); padding: 22px; border-radius: 18px; border-bottom: 3px solid transparent; }
+.stat-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; justify-content: center; align-items: center; margin-bottom: 15px; }
+.stat-card p { font-size: 13px; color: var(--text-muted); }
+.stat-card h2 { font-size: 24px; margin-top: 5px; }
+.stat-card.total { border-color: var(--accent-blue); } .stat-card.total .stat-icon { background: rgba(78,162,255,0.1); color: var(--accent-blue); }
+.stat-card.pending { border-color: var(--accent-orange); } .stat-card.pending .stat-icon { background: rgba(255,159,67,0.1); color: var(--accent-orange); }
+.stat-card.completed { border-color: var(--accent-green); } .stat-card.completed .stat-icon { background: rgba(40,199,111,0.1); color: var(--accent-green); }
+.stat-card.progress-card { border-color: var(--primary-purple); } 
+.stat-card.progress-card .stat-icon { background: rgba(108,93,211,0.1); color: var(--primary-purple); }
+
+/* CONTROLS */
+.controls-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.filter-buttons { display: flex; gap: 10px; }
+.filter-btn { background: #1d1d2b; border: none; color: var(--text-muted); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+.filter-btn.active, .filter-btn:hover { background-color: var(--primary-purple); color: white; }
+.sort-dropdown { background: #1d1d2b; padding: 8px 18px; border-radius: 10px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+
+/* TASK LAYOUT */
+.priority-group { margin-bottom: 25px; }
+.priority-title { font-size: 13px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+.priority-title .dot { width: 7px; height: 7px; border-radius: 50%; }
+.priority-title.high .dot { background-color: var(--tag-work-text); }
+.priority-title.medium .dot { background-color: var(--accent-orange); }
+.priority-title.low .dot { background-color: var(--accent-green); }
+.task-list { display: flex; flex-direction: column; gap: 10px; min-height: 5px; }
+
+.task-item { background-color: var(--bg-card); padding: 16px 20px; border-radius: 14px; display: flex; align-items: center; justify-content: space-between; }
+.task-left { display: flex; align-items: center; gap: 15px; }
+.custom-checkbox { width: 20px; height: 20px; border: 2px solid #3e3e57; border-radius: 6px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+.task-item.checked .custom-checkbox { background-color: var(--primary-purple); border-color: var(--primary-purple); }
+.custom-checkbox i { font-size: 11px; color: white; display: none; }
+.task-item.checked .custom-checkbox i { display: block; }
+.task-title { font-size: 14px; color: #dfdfe9; }
+.task-item.checked .task-title { text-decoration: line-through; color: var(--text-muted); }
+.task-right { display: flex; align-items: center; gap: 20px; position: relative; }
+.task-tag { font-size: 11px; padding: 4px 12px; border-radius: 6px; font-weight: 500; }
+.task-tag.work { background: var(--tag-work); color: var(--tag-work-text); }
+.task-tag.personal { background: var(--tag-personal); color: var(--tag-personal-text); }
+.task-tag.study { background: var(--tag-study); color: var(--tag-study-text); }
+.task-date { font-size: 12px; color: var(--text-muted); }
+
+/* 💡 Dynamic Action Dropdown Menu (Edit/Delete အတွက်) */
+.action-menu-btn { color: var(--text-muted); cursor: pointer; padding: 5px; }
+.action-dropdown { position: absolute; right: 0; top: 25px; background: #252538; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: none; flex-direction: column; z-index: 10; overflow: hidden; width: 90px;}
+.action-dropdown.show { display: flex; }
+.action-dropdown button { background: none; border: none; color: white; padding: 8px 12px; text-align: left; font-size: 12px; cursor: pointer; }
+.action-dropdown button:hover { background: rgba(255,255,255,0.05); }
+.action-dropdown button.delete { color: #ff4e64; }
+
+/* FAB BUTTON */
+.fab-btn { position: fixed; bottom: 40px; right: 40px; width: 55px; height: 55px; background-color: var(--primary-purple); color: white; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 10px 20px rgba(108, 93, 211, 0.3); display: flex; justify-content: center; align-items: center; z-index: 99; }
+
+/* MODAL CONTAINER */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 100; }
+.modal-overlay.open { display: flex; }
+.modal-box { background: var(--bg-card); padding: 30px; border-radius: 20px; width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 20px; }
+.modal-box h3 { font-size: 18px; }
+.modal-box input, .modal-box select { background: #151424; border: 1px solid #3e3e57; padding: 12px; border-radius: 10px; color: white; width: 100%; font-size: 14px; }
+.form-row { display: flex; gap: 15px; }
+.form-row div { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.form-row label { font-size: 12px; color: var(--text-muted); }
+.modal-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+.modal-btn { padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer; font-size: 14px; }
+.modal-btn.cancel { background: #252538; color: white; }
+.modal-btn.save { background: var(--primary-purple); color: white; }
+/* ==========================================================================
+   📱 MOBILE RESPONSIVE MEDIA QUERIES (ဖုန်း Screen များအတွက် ပြင်ဆင်ချက်)
+   ========================================================================== */
+
+/* ကွန်ပျူတာ Screen ထက် သေးငယ်သော Devices များ (Tablets နှင့် ဖုန်းများ) အတွက် */
+@media screen and (max-width: 1024px) {
+    body {
+        overflow: auto; /* Desktop မှာ Screen အသေပိတ်ထားတာကို ဖုန်းမှာ Scroll ဆွဲလို့ရအောင် ဖွင့်ပေးတာပါ */
+    }
+
+    .dashboard-container {
+        flex-direction: column; /* Sidebar နဲ့ Main Content ကို ဘေးတိုက်ကနေ အပေါ်အောက် ပြောင်းလိုက်တာပါ */
+        height: auto;
+    }
+
+    /* Sidebar ကို အပေါ်ဆုံးမှာ ကပ်ပြားပုံစံ Menu အဖြစ် ပြောင်းလဲခြင်း */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        gap: 15px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-menu {
+        flex-direction: row; /* Sidebar Menu တွေကို ဒေါင်လိုက်ကနေ ရေပြင်ညီ တန်းစီခိုင်းတာပါ */
+        overflow-x: auto;    /* Menu တွေ များနေရင် လက်နဲ့ ဘေးကို Slide ဆွဲလို့ရအောင် လုပ်တာပါ */
+        padding-bottom: 5px;
+        white-space: nowrap;
+    }
+
+    .nav-item {
+        padding: 8px 16px;
+    }
+
+    .user-profile, .quote-box {
+        display: none; /* ဖုန်း Screen မှာ နေရာမစားအောင် Profile နဲ့ Quote Box ကို ဖျောက်ထားပါမယ် */
+    }
+
+    .main-content {
+        padding: 20px; /* ဘေးဘောင် အကွာအဝေးကို ဖုန်းနဲ့ အဆင်ပြေအောင် လျှော့ချလိုက်ပါတယ် */
+    }
+}
+
+/* ဖုန်း Screen အလတ်စားများနှင့် အသေးစားများအတွက် (Mobile Devices) */
+@media screen and (max-width: 768px) {
+    /* Hero Banner ကို ဖုန်း Screen နှင့် အချိုးကျအောင် ညှိခြင်း */
+    .hero-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px;
+        gap: 20px;
+    }
+
+    .progress-container {
+        width: 100%; /* Progress Bar ကို ဖုန်းမျက်နှာပြင်အပြည့် ချဲ့လိုက်ပါတယ် */
+    }
+
+    .hero-icon {
+        display: none; /* ဖုန်းမှာ စာအုပ်ပုံ Icon ကြီး ကန့်လန့်ကြီး ဖြစ်မနေအောင် ဖျောက်ထားပါတယ် */
+    }
+
+    /* Stats ကတ်ပြား ၄ ခုကို Desktop မှာ ၄ ကွက်တန်းစီရာကနေ ဖုန်းမှာ ၂ ကွက်စီ စီခိုင်းတာပါ */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card h2 {
+        font-size: 20px;
+    }
+
+    /* Filter ခလုတ်များနှင့် Sort Button ကို အပေါ်အောက် နေရာချခြင်း */
+    .controls-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .filter-buttons {
+        width: 100%;
+        overflow-x: auto; /* ဖုန်းမှာ Category ခလုတ်တွေကို ဘေးတိုက် Slide ဆွဲလို့ရစေပါတယ် */
+        padding-bottom: 5px;
+        white-space: nowrap;
+    }
+
+    /* Task တစ်ခုချင်းစီရဲ့ UI ကို ဖုန်းမှာ စာလုံးမကျပ်အောင် ညှိခြင်း */
+    .task-item {
+        padding: 12px 15px;
+    }
+
+    .task-title {
+        font-size: 13px;
+    }
+
+    .task-right {
+        gap: 10px;
+    }
+
+    .task-tag {
+        display: none; /* Screen အသေးဆုံး ဖုန်းတွေမှာ Category Tag စာသားကို ဖျောက်ပြီး နေရာချန်တာပါ */
+    }
+
+    /* Task အသစ်ထည့်တဲ့ Modal (Popup Box) ကို ဖုန်း Screen အပြည့်နီးပါး ဖြစ်အောင်လုပ်ခြင်း */
+    .modal-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column; /* Form တွေကို တစ်ကြောင်းတည်းမှာ ၂ ကွက်မပြဘဲ တစ်ကွက်ချင်းစီ အပေါ်အောက် ပြောင်းပါတယ် */
+        gap: 15px;
+    }
+}
