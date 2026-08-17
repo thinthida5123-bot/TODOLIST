@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon"><i class="fa-solid fa-square-check"></i></div>
+                <h2>TodoList</h2>
+            </div>
+
+            <div class="user-profile">
+                <img src="my.jpg" alt="User Avatar" class="avatar">
+                <div class="user-info">
+                    <h3>Thin Thida Kyaw</h3>
+                    <p>Stay fresh! <i class="fa-solid fa-angle-down"></i></p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-nav="all"><i class="fa-solid fa-list-check"></i> My Tasks</a>
+                <a href="#" class="nav-item" data-nav="today"><i class="fa-solid fa-calendar-day"></i> Today <span class="badge" id="badge-today">0</span></a>
+                <a href="#" class="nav-item" data-nav="upcoming"><i class="fa-solid fa-clock"></i> Upcoming <span class="badge" id="badge-upcoming">0</span></a>
+                <a href="#" class="nav-item" data-nav="completed"><i class="fa-solid fa-circle-check"></i> Completed <span class="badge" id="badge-completed">0</span></a>
+            </nav>
+
+            <div class="quote-box">
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <p>Small progress every day leads to big results.</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="hero-banner">
+                <div class="hero-text">
+                    <p class="greeting">Good morning, Thida! 💜</p>
+                    <h1 id="page-title">Let's get things done.</h1>
+                    
+                    <div class="progress-container">
+                        <div class="progress-labels">
+                            <span>Overall Progress</span>
+                            <span id="progress-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <i class="fa-regular fa-clipboard-list hero-icon"></i>
+                </div>
+            </header>
+
+            <section class="stats-grid">
+                <div class="stat-card total">
+                    <div class="stat-icon"><i class="fa-solid fa-square-check"></i></div>
+                    <p>Total Tasks</p>
+                    <h2 id="total-tasks-count">0</h2>
+                </div>
+                <div class="stat-card pending">
+                    <div class="stat-icon"><i class="fa-regular fa-clock"></i></div>
+                    <p>Pending</p>
+                    <h2 id="pending-tasks-count">0</h2>
+                </div>
+                <div class="stat-card completed">
+                    <div class="stat-icon"><i class="fa-regular fa-circle-check"></i></div>
+                    <p>Completed</p>
+                    <h2 id="completed-tasks-count">0</h2>
+                </div>
+                <div class="stat-card progress-card">
+                    <div class="stat-icon"><i class="fa-solid fa-flag"></i></div>
+                    <p>In Progress</p>
+                    <h2 id="inprogress-tasks-count">0</h2>
+                </div>
+            </section>
+
+            <section class="controls-row">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Work">Work</button>
+                    <button class="filter-btn" data-filter="Personal">Personal</button>
+                    <button class="filter-btn" data-filter="Study">Study</button>
+                </div>
+                <div class="sort-dropdown" id="sort-date-btn">
+                    <span>Sort by: <strong id="sort-label">Default</strong></span>
+                    <i class="fa-solid fa-arrow-down-wide-short"></i>
+                </div>
+            </section>
+
+            <section class="task-sections-container">
+                
+                <div class="priority-group" id="group-high">
+                    <h3 class="priority-title high"><span class="dot"></span> High Priority</h3>
+                    <div class="task-list" id="high-priority-tasks"></div>
+                </div>
+
+                <div class="priority-group" id="group-medium">
+                    <h3 class="priority-title medium"><span class="dot"></span> Medium Priority</h3>
+                    <div class="task-list" id="medium-priority-tasks"></div>
+                </div>
+
+                <div class="priority-group" id="group-low">
+                    <h3 class="priority-title low"><span class="dot"></span> Low Priority</h3>
+                    <div class="task-list" id="low-priority-tasks"></div>
+                </div>
+
+            </section>
+
+            <button class="fab-btn" id="add-task-btn">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="task-modal">
+        <div class="modal-box">
+            <h3 id="modal-title">Create New Task</h3>
+            <input type="text" id="task-input-title" placeholder="What needs to be done?" required>
+            
+            <div class="form-row">
+                <div>
+                    <label>Category</label>
+                    <select id="task-input-category">
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Study">Study</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Priority</label>
+                    <select id="task-input-priority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div>
+                    <label>Due Date</label>
+                    <input type="date" id="task-input-date" required>
+                </div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" id="modal-cancel-btn">Cancel</button>
+                <button class="modal-btn save" id="modal-save-btn">Save Task</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
